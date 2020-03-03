@@ -7,7 +7,7 @@
         <version>3.50</version>
         <relativePath />
     </parent>
-    <groupId>io.jenkins.plugins</groupId>
+    <groupId>org.liquibase.jenkins</groupId>
     <artifactId>liquibase</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
@@ -21,7 +21,7 @@
           ~ stapler-plugin.version: The Stapler Maven plugin version required by the plugin.
      -->
     </properties>
-    <name>TODO Plugin</name>
+    <name>Liquibase Plugin</name>
     <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
     <licenses>
         <license>

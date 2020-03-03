@@ -4,7 +4,7 @@ import hudson.Launcher;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.util.FormValidation;
-import io.jenkins.plugins.sample.Messages;
+import org.liquibase.jenkins.Messages;
 import hudson.model.AbstractProject;
 import hudson.model.Run;
 import hudson.model.TaskListener;
