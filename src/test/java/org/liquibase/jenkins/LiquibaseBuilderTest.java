@@ -1,4 +1,4 @@
-package io.jenkins.plugins.sample;
+package org.liquibase.jenkins;
 
 import hudson.model.FreeStyleBuild;
 import hudson.model.FreeStyleProject;
@@ -9,8 +9,9 @@ import org.jenkinsci.plugins.workflow.job.WorkflowRun;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.liquibase.jenkins.LiquibaseBuilder;
 
-public class HelloWorldBuilderTest {
+public class LiquibaseBuilderTest {
 
     @Rule
     public JenkinsRule jenkins = new JenkinsRule();
@@ -20,20 +21,20 @@ public class HelloWorldBuilderTest {
     @Test
     public void testConfigRoundtrip() throws Exception {
         FreeStyleProject project = jenkins.createFreeStyleProject();
-        project.getBuildersList().add(new HelloWorldBuilder(name));
+        project.getBuildersList().add(new LiquibaseBuilder(name));
         project = jenkins.configRoundtrip(project);
-        jenkins.assertEqualDataBoundBeans(new HelloWorldBuilder(name), project.getBuildersList().get(0));
+        jenkins.assertEqualDataBoundBeans(new LiquibaseBuilder(name), project.getBuildersList().get(0));
     }
 
     @Test
     public void testConfigRoundtripFrench() throws Exception {
         FreeStyleProject project = jenkins.createFreeStyleProject();
-        HelloWorldBuilder builder = new HelloWorldBuilder(name);
+        LiquibaseBuilder builder = new LiquibaseBuilder(name);
         builder.setUseFrench(true);
         project.getBuildersList().add(builder);
         project = jenkins.configRoundtrip(project);
 
-        HelloWorldBuilder lhs = new HelloWorldBuilder(name);
+        LiquibaseBuilder lhs = new LiquibaseBuilder(name);
         lhs.setUseFrench(true);
         jenkins.assertEqualDataBoundBeans(lhs, project.getBuildersList().get(0));
     }
@@ -41,7 +42,7 @@ public class HelloWorldBuilderTest {
     @Test
     public void testBuild() throws Exception {
         FreeStyleProject project = jenkins.createFreeStyleProject();
-        HelloWorldBuilder builder = new HelloWorldBuilder(name);
+        LiquibaseBuilder builder = new LiquibaseBuilder(name);
         project.getBuildersList().add(builder);
 
         FreeStyleBuild build = jenkins.buildAndAssertSuccess(project);
@@ -52,7 +53,7 @@ public class HelloWorldBuilderTest {
     public void testBuildFrench() throws Exception {
 
         FreeStyleProject project = jenkins.createFreeStyleProject();
-        HelloWorldBuilder builder = new HelloWorldBuilder(name);
+        LiquibaseBuilder builder = new LiquibaseBuilder(name);
         builder.setUseFrench(true);
         project.getBuildersList().add(builder);
 

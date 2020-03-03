@@ -1,4 +1,4 @@
-package io.jenkins.plugins.sample;
+package org.liquibase.jenkins;
 
 import hudson.Extension;
 import hudson.util.FormValidation;
@@ -11,16 +11,16 @@ import org.kohsuke.stapler.QueryParameter;
  * Example of Jenkins global configuration.
  */
 @Extension
-public class SampleConfiguration extends GlobalConfiguration {
+public class LiquibaseConfiguration extends GlobalConfiguration {
 
     /** @return the singleton instance */
-    public static SampleConfiguration get() {
-        return GlobalConfiguration.all().get(SampleConfiguration.class);
+    public static LiquibaseConfiguration get() {
+        return GlobalConfiguration.all().get(LiquibaseConfiguration.class);
     }
 
     private String label;
 
-    public SampleConfiguration() {
+    public LiquibaseConfiguration() {
         // When Jenkins is restarted, load any saved configuration from disk.
         load();
     }
