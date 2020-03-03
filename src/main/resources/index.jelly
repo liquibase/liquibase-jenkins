@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-    TODO
+    The Liquibase Plugin provides a simple, intuitive way to run Liquibase during your Jenkins operations.
 </div>

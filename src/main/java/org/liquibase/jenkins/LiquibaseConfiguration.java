@@ -19,16 +19,35 @@ public class LiquibaseConfiguration extends GlobalConfiguration {
     }
 
     private String label;
+    private String liquibaseCmd;
+    private String liquibaseDrivers;
 
-    public LiquibaseConfiguration() {
+	public LiquibaseConfiguration() {
         // When Jenkins is restarted, load any saved configuration from disk.
         load();
     }
 
-    /** @return the currently configured label, if any */
+	public FormValidation doCheckLabel(@QueryParameter String value) {
+        if (StringUtils.isEmpty(value)) {
+            return FormValidation.warning("Please specify a label.");
+        }
+        return FormValidation.ok();
+    }
+
+	/** @return the currently configured label, if any */
     public String getLabel() {
         return label;
     }
+
+    /** @return the currently configured Liquibase Command, if any */
+    public String getLiquibaseCmd() {
+		return liquibaseCmd;
+	}
+
+	/** @return the currently configured Liquibase Command, if any */
+    public String getLiquibaseDrivers() {
+		return liquibaseDrivers;
+	}
 
     /**
      * Together with {@link #getLabel}, binds to entry in {@code config.jelly}.
@@ -40,11 +59,24 @@ public class LiquibaseConfiguration extends GlobalConfiguration {
         save();
     }
 
-    public FormValidation doCheckLabel(@QueryParameter String value) {
-        if (StringUtils.isEmpty(value)) {
-            return FormValidation.warning("Please specify a label.");
-        }
-        return FormValidation.ok();
-    }
+    /**
+     * Together with {@link #getLiquibaseCmd}, binds to entry in {@code config.jelly}.
+     * @param liquibaseCmd the location of the Liquibase command
+     */
+    @DataBoundSetter
+    public void setLiquibaseCmd(String liquibaseCmd) {
+		this.liquibaseCmd = liquibaseCmd;
+		save();
+	}
+
+    /**
+     * Together with {@link #getLiquibaseDrivers}, binds to entry in {@code config.jelly}.
+     * @param liquibaseDrivers the location of the Liquibase JDBC drivers
+     */
+    @DataBoundSetter
+    public void setLiquibaseDrivers(String liquibaseDrivers) {
+		this.liquibaseDrivers = liquibaseDrivers;
+		save();
+	}
 
 }
