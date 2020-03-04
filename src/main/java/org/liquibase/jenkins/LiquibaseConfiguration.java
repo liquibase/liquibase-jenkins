@@ -7,9 +7,6 @@ import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
 
-/**
- * Example of Jenkins global configuration.
- */
 @Extension
 public class LiquibaseConfiguration extends GlobalConfiguration {
 
@@ -33,6 +30,21 @@ public class LiquibaseConfiguration extends GlobalConfiguration {
         }
         return FormValidation.ok();
     }
+	
+	public FormValidation doLiquibaseCmd(@QueryParameter String value) {
+        if (StringUtils.isEmpty(value)) {
+            return FormValidation.warning("Please specify the Liquibase Command.");
+        }
+        return FormValidation.ok();
+    }
+	
+	public FormValidation doLiquibaseDrivers(@QueryParameter String value) {
+        if (StringUtils.isEmpty(value)) {
+            return FormValidation.warning("Please specify the Liquibase Drivers.");
+        }
+        return FormValidation.ok();
+    }
+	
 
 	/** @return the currently configured label, if any */
     public String getLabel() {
